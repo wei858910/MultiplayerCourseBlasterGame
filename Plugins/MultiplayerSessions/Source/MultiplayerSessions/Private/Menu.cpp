@@ -14,7 +14,7 @@ void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch, FStr
 	MatchType = TypeOfMatch;
 	AddToViewport();
 	SetVisibility(ESlateVisibility::Visible);
-	bIsFocusable = true;
+	SetIsFocusable(true);
 
 	UWorld* World = GetWorld();
 	if (World)
@@ -65,10 +65,10 @@ bool UMenu::Initialize()
 	return true;
 }
 
-void UMenu::OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld)
+void UMenu::NativeDestruct()
 {
 	MenuTearDown();
-	Super::OnLevelRemovedFromWorld(InLevel, InWorld);
+	Super::NativeDestruct();
 }
 
 void UMenu::OnCreateSession(bool bWasSuccessful)
